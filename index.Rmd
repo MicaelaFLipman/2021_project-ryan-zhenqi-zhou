@@ -6,9 +6,86 @@ subtitle: A Case Study in Xuanwu Lake Park, China
 
 # Introduction
 
-[~ 200 words]
+The propensity for visiting urban parks is affected by the park’s attractiveness and travel convenience, where walking provides the most basic and fair access. Walking routes from residences to parks, in terms of duration and perception, have received insufficient attention in the literature. Using the case study of Xuanwu Lake Park in China, I acquired walking routes from residences to the park through open-source data scraping in order to depict the pedestrian shed and pedestrian environment reasonably along these routes.
 
-Clearly stated background and questions / hypotheses / problems being addressed. Sets up the analysis in an interesting and compelling way.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Materials and methods
 

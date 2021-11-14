@@ -8,7 +8,18 @@ subtitle: A Case Study in Xuanwu Lake Park, China
 
 The propensity for visiting urban parks is affected by the park’s attractiveness and travel convenience, where walking provides the most basic and fair access. Walking routes from residences to parks, in terms of duration and perception, have received insufficient attention in the literature. Using the case study of Xuanwu Lake Park in China, I acquired walking routes from residences to the park through open-source data scraping in order to depict the pedestrian shed and pedestrian environment reasonably along these routes.
 
+# import packages
+```{r, message=F, warning=F}
+library(sf)
+library(ggplot2)
+library(tidyverse)
+library(ggmap)
+```
 
+# Uplaod walking route data
+```{r, message=F}
+walkroute = st_read("data/Walking routes.shp")
+```
 
 
 

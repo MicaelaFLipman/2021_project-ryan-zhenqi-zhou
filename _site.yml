@@ -13,4 +13,4 @@ output:
     includes:
       after_body: include/after_body.html
     css: bootstrap.min.css
-    keep_md: false
+    keep_md: styles.css

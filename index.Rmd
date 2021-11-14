@@ -1,7 +1,7 @@
 ---
-title: "Detecting the pedestrian shed and walking route environment of urban parks with open-source data"
-author: Ryan Zhenqi Zhou
-subtitle: A Case Study in Xuanwu Lake Park, China
+title: "My Final Project Template"
+author: Your name here
+subtitle: Subtitle here if desired
 ---
 
 # Introduction
@@ -9,7 +9,6 @@ subtitle: A Case Study in Xuanwu Lake Park, China
 [~ 200 words]
 
 Clearly stated background and questions / hypotheses / problems being addressed. Sets up the analysis in an interesting and compelling way.
-!11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
 
 # Materials and methods
 

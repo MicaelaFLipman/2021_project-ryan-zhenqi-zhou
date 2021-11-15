@@ -14,13 +14,42 @@ library(sf)
 library(ggplot2)
 library(tidyverse)
 library(ggmap)
+library(knitr)
+library(tmap)
+library(leaflet)
+library(tmaptools)
+library(ceramic)
 ```
 
 # Uplaod walking route data
-```{r, message=F}
-walkroute = st_read("data/Walking routes.shp")
+```{r}
+walkroutes <- read_csv("data/Walking routes.csv")
+walkroutes_ta <- subset(walkroutes, select=-c(geometry))
+kable(head(walkroutes_ta))
+walkroutes_sf <- st_as_sf(walkroutes, wkt = "geometry",  crs=4326)
+ori_points <- st_as_sf(walkroutes_ta, coords = c("ori_lng_84","ori_lat_84"),  crs=4326)
+des_points <- st_as_sf(walkroutes_ta, coords = c("des_lng_84","des_lat_84"),  crs=4326)
+boundary <- read_sf("data/Park Boundary.shp")
+boundary_li = st_cast(boundary, "LINESTRING")
 ```
 
+# Figure
+```{r}
+current.mode <- tmap_mode("view")
+bound_box <- c(left = 118.7702332, bottom = 32.0560625, right = 118.8204844, top = 32.0952245)
+map_1 <- tm_basemap(leaflet::providers$Esri.WorldTopoMap, alpha = 0.4) +
+  tm_shape(boundary_li, bbox = bound_box) +
+  tm_lines(scale = 3, col = "red") + 
+  tm_shape(walkroutes_sf) +
+  tm_lines(scale = 1, col = "blue") +
+  tm_shape(ori_points) +
+  tm_symbols(size = 0.1, col = "goldenrod1", border.alpha = 0) +
+  tm_shape(des_points) +
+  tm_symbols(size = 0.06, col = "orangered", border.alpha = 0) 
+  
+   
+map_1
+```
 
 
 

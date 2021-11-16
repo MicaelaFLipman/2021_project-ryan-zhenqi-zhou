@@ -15,11 +15,11 @@ library(tidyverse)
 library(tmap)
 library(leaflet)
 library(kableExtra)
-knitr::opts_chunk$set(cache=TRUE)  # cache the results for quick compiling
+# knitr::opts_chunk$set(cache=TRUE)  # cache the results for quick compiling
 ```
 
 Upload walking route data
-```{r}
+```{r, message=F, warning=F}
 walkroutes <- read_csv("data/Walking routes.csv")
 walkroutes_ta <- subset(walkroutes, select=-c(geometry))
 kable(head(walkroutes_ta), align = "c") %>%
@@ -29,7 +29,7 @@ kable(head(walkroutes_ta), align = "c") %>%
 According to the policy of the 15-Minute Community-Life Circle, a 15-min walk to parks is important for residents in China, which corresponds to about a 1000-m distance. I called the travel navigation function of online map to scrape recommended walking routes from residential buildings to the entrances of Xuanwu Lake Park, with a 15-min duration as the threshold. This data also includes the information of route distance, euclidean distance, the number of turns, the number of crossings,      starting, and ending points.
 
 Process and spatialize data
-```{r}
+```{r, message=F, warning=F}
 walkroutes_sf <- st_as_sf(walkroutes, wkt = "geometry",  crs=4326)
 ori_points <- st_as_sf(walkroutes_ta, coords = c("ori_lng_84","ori_lat_84"),  crs=4326)
 des_points <- st_as_sf(walkroutes_ta, coords = c("des_lng_84","des_lat_84"),  crs=4326)
@@ -38,7 +38,7 @@ boundary_li = st_cast(boundary, "LINESTRING")
 ```
 
 Show whole data set
-```{r, fig.align = "center"}
+```{r, fig.align = "center", message=F, warning=F}
 current.mode <- tmap_mode("view")
 bound_box <- c(left = 118.7772332, bottom = 32.0550625, right = 118.8104844, top = 32.0902245)
 map_1 <- tm_basemap(leaflet::providers$Esri.WorldTopoMap, alpha = 0.4) +
@@ -57,7 +57,7 @@ map_1
 A reasonable walking distance is necessary for daily park users. There are many measurement to define pedestrian shed.
 
 Euclidean distance buffer method and service areas
-```{r, fig.align = "center"}
+```{r, fig.align = "center", message=F, warning=F}
 boundary_li_pro <- st_transform(boundary_li, "EPSG:32650")
 boundary_pro <- st_transform(boundary, "EPSG:32650")
 boundary_bu <- st_buffer(boundary_li_pro, 1000)
@@ -82,7 +82,7 @@ map_2 <- tm_shape(background_bu, bbox = boundary_di_bu) +
 map_2
 ```
 line-based network 50m-buffer method and service areas
-```{r, fig.align = "center"}
+```{r, fig.align = "center", message=F, warning=F}
 walkroutes_pro <- st_transform(walkroutes_sf, "EPSG:32650")
 walkroutes_pro_un <- st_union(walkroutes_pro)
 walkroutes_bu <- st_buffer(walkroutes_pro_un, 50)

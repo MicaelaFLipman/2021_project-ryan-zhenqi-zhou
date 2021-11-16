@@ -103,4 +103,4 @@ map_3 <- tm_shape(background_bu, bbox = boundary_di_bu) +
 map_3
 ```
 
-This image proposed a line-based network buffer method that defined areas near the center line of routes as accessible, which is more accurate, as it is closer to the actual environment available to pedestrians. As you can see in Map2 and Map3, the service areas determined by the route-based method were significantly less than those by Euclidean distance buffer method, which the ratio is 0.31.
+This image proposed a line-based network buffer method that defined areas near the center line of routes as accessible, which is more accurate, as it is closer to the actual environment available to pedestrians. As you can see in Map2 and Map3, the service areas determined by the route-based method were significantly less than those by Euclidean distance buffer method, which the ratio is `r as.numeric(round(round(area_RD/1000000)/round(area_ED/1000000), 2))`.

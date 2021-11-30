@@ -2,6 +2,9 @@
 title: "Detecting the pedestrian shed and walking route environment of urban parks with open-source data"
 author: Ryan Zhenqi Zhou
 subtitle: A Case Study in Xuanwu Lake Park, China
+output:
+  html_document:
+    code_folding: show
 ---
 
 # Introduction

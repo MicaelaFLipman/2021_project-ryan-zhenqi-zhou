@@ -7,7 +7,7 @@ output:
     code_folding: show
 ---
 
-# Introduction
+# Introduction. 
 
 The propensity for visiting urban parks is affected by the park’s attractiveness and travel convenience, where walking provides the most basic and fair access. Walking routes from residences to parks, in terms of duration and perception, have received insufficient attention in the literature. Using the case study of Xuanwu Lake Park in China, I acquired walking routes from residences to the park through open-source data scraping in order to depict the pedestrian shed and pedestrian environment reasonably along these routes.
 
@@ -29,9 +29,9 @@ kable(head(walkroutes_ta), align = "c") %>%
   kable_styling(bootstrap_options = "bordered", full_width = F)
 ```
 
-According to the policy of the 15-Minute Community-Life Circle, a 15-min walk to parks is important for residents in China, which corresponds to about a 1000-m distance. I called the travel navigation function of online map to scrape recommended walking routes from residential buildings to the entrances of Xuanwu Lake Park, with a 15-min duration as the threshold. This data also includes the information of route distance, euclidean distance, the number of turns, the number of crossings,      starting, and ending points.
+According to the policy of the 15-Minute Community-Life Circle, a 15-min walk to parks is important for residents in China, which corresponds to about a 1000-m distance. I called the travel navigation function of online map to scrape recommended walking routes from residential buildings to the entrances of Xuanwu Lake Park, with a 15-min duration as the threshold. This data also includes the information of route distance, euclidean distance, the number of turns, the number of crossings,      starting, and ending points.  
 
-Process and spatialize data
+Process and spatialize data. 
 ```{r, message=F, warning=F}
 walkroutes_sf <- st_as_sf(walkroutes, wkt = "geometry",  crs=4326)
 ori_points <- st_as_sf(walkroutes_ta, coords = c("ori_lng_84","ori_lat_84"),  crs=4326)
@@ -40,7 +40,7 @@ boundary <- read_sf("data/Park Boundary.shp")
 boundary_li = st_cast(boundary, "LINESTRING")
 ```
 
-Show whole data set
+Show whole data set. 
 ```{r, fig.align = "center", message=F, warning=F}
 current.mode <- tmap_mode("view")
 bound_box <- c(left = 118.7772332, bottom = 32.0550625, right = 118.8104844, top = 32.0902245)
@@ -57,7 +57,7 @@ map_1 <- tm_basemap(leaflet::providers$Esri.WorldTopoMap, alpha = 0.4) +
 map_1
 ```
 
-A reasonable walking distance is necessary for daily park users. There are many measurement to define pedestrian shed.
+A reasonable walking distance is necessary for daily park users. There are many measurement to define pedestrian shed.  
 
 Euclidean distance buffer method and service areas
 ```{r, fig.align = "center", message=F, warning=F}
@@ -82,7 +82,7 @@ map_2 <- tm_shape(background_bu, bbox = boundary_di_bu) +
   tm_lines(scale = 4, col = "red") +
   tm_credits(paste("Service areas with Euclidean distance buffer method is",as.character(round(area_ED/1000000)),"km2"), position=c("left", "bottom"))
   
-map_2
+map_2. 
 ```
 line-based network 50m-buffer method and service areas
 ```{r, fig.align = "center", message=F, warning=F}
@@ -103,7 +103,7 @@ map_3 <- tm_shape(background_bu, bbox = boundary_di_bu) +
   tm_lines(scale = 4, col = "red") +
   tm_credits(paste("Service areas with line-based network 50m-buffer method is",as.character(round(area_RD/1000000)),"km2"), position=c("left", "bottom"))
   
-map_3
+map_3. 
 ```
 
-This image proposed a line-based network buffer method that defined areas near the center line of routes as accessible, which is more accurate, as it is closer to the actual environment available to pedestrians. As you can see in Map2 and Map3, the service areas determined by the route-based method were significantly less than those by Euclidean distance buffer method, which the ratio is `r as.numeric(round(round(area_RD/1000000)/round(area_ED/1000000), 2))`.
+This image proposed a line-based network buffer method that defined areas near the center line of routes as accessible, which is more accurate, as it is closer to the actual environment available to pedestrians. As you can see in Map2 and Map3, the service areas determined by the route-based method were significantly less than those by Euclidean distance buffer method, which the ratio is `r as.numeric(round(round(area_RD/1000000)/round(area_ED/1000000), 2))`.  
